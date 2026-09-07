@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Milton Dávila López — Perfil profesional</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-dark:#15171A;
+    --bg-dark-2:#1B1E22;
+    --bg-darkest:#101214;
+    --paper:#F3F0E9;
+    --paper-2:#EAE5DA;
+    --ink:#EDEBE4;
+    --ink-soft:#9C9A92;
+    --ink-dark:#1D1C19;
+    --ink-dark-soft:#6B685F;
+    --accent:#E1552C;
+    --accent-soft:#E1552C33;
+    --sage:#6F8F6C;
+    --sage-soft:#6F8F6C2E;
+    --line-dark:rgba(237,235,228,0.14);
+    --line-light:rgba(29,28,25,0.14);
+    --maxw:1040px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Inter',sans-serif;
+    background:var(--bg-dark);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.disp{font-family:'Space Grotesk',sans-serif;}
+  ::selection{background:var(--accent);color:#fff;}
+
+  /* ---------- Nav ---------- */
+  #nav{
+    position:fixed; top:0; left:0; height:100vh; width:230px;
+    padding:34px 0 34px 34px;
+    display:flex; flex-direction:column; justify-content:space-between;
+    z-index:50; pointer-events:none;
+  }
+  #nav .navtop, #nav .navbottom{pointer-events:auto;}
+  #nav .frame-counter{
+    font-family:'Space Grotesk',sans-serif; font-size:11px; letter-spacing:0.04em;
+    color:var(--ink-soft); margin-bottom:22px; font-variant-numeric: tabular-nums;
+  }
+  #nav .frame-counter b{color:var(--accent-current, var(--accent)); font-weight:600;}
+  #nav ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px;}
+  #nav a{
+    display:flex; align-items:baseline; gap:9px;
+    color:var(--ink-soft); text-decoration:none;
+    font-size:13px; padding:7px 14px 7px 0;
+    border-left:2px solid transparent;
+    transition:color .18s ease, border-color .18s ease;
+  }
+  #nav a .n{font-family:'Space Grotesk',sans-serif; font-size:11px; opacity:.7; font-variant-numeric: tabular-nums;}
+  #nav a:hover{color:var(--ink);}
+  #nav a.active{color:var(--ink); border-left-color:var(--accent);}
+  #nav a.active .n{color:var(--accent); opacity:1;}
+  #nav .navbottom{font-size:10.5px; color:var(--ink-soft); line-height:1.6;}
+
+  /* mobile nav */
+  #mnav{display:none; position:fixed; top:0; left:0; right:0; z-index:60;
+    background:rgba(21,23,26,0.92); backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line-dark);
+    overflow-x:auto; white-space:nowrap; padding:12px 16px;}
+  #mnav a{color:var(--ink-soft); text-decoration:none; font-size:12.5px; margin-right:18px; font-family:'Space Grotesk',sans-serif;}
+  #mnav a.active{color:var(--accent);}
+
+  main{margin-left:230px;}
+  section{position:relative; padding:88px 64px 88px 64px;}
+  .inner{max-width:var(--maxw); margin:0 auto;}
+
+  .light{background:var(--paper); color:var(--ink-dark);}
+  .dark{background:var(--bg-dark); color:var(--ink);}
+  .dark2{background:var(--bg-dark-2); color:var(--ink);}
+  .darkest{background:var(--bg-darkest); color:var(--ink);}
+
+  /* corner bracket motif */
+  .frame-mark{position:absolute; width:22px; height:22px; opacity:.55;}
+  .fm-tl{top:26px; left:26px; border-top:1.5px solid currentColor; border-left:1.5px solid currentColor;}
+  .fm-br{bottom:26px; right:26px; border-bottom:1.5px solid currentColor; border-right:1.5px solid currentColor;}
+  .dark .frame-mark, .dark2 .frame-mark, .darkest .frame-mark{color:var(--ink-soft);}
+  .light .frame-mark{color:var(--ink-dark-soft);}
+
+  .chapter-tag{
+    font-family:'Space Grotesk',sans-serif; font-size:12px; font-variant-numeric:tabular-nums;
+    color:var(--accent-current, var(--accent)); margin-bottom:10px; display:flex; align-items:center; gap:8px;
+  }
+  .chapter-tag .dash{width:22px; height:1px; background:currentColor; opacity:.7;}
+  h2.sec-title{font-size:clamp(28px,4vw,40px); font-weight:600; line-height:1.12; margin:0 0 10px;}
+  .sec-sub{font-size:15px; line-height:1.6; max-width:560px; opacity:.8; margin:0 0 40px;}
+  .light .sec-sub{color:var(--ink-dark-soft);}
+  .dark .sec-sub, .dark2 .sec-sub, .darkest .sec-sub{color:var(--ink-soft);}
+
+  .placeholder{
+    font-style:italic; font-size:12.5px; opacity:.6; border:1px dashed currentColor;
+    border-radius:3px; padding:9px 12px; display:inline-block;
+  }
+
+  /* ---------- HERO ---------- */
+  #perfil{min-height:100vh; display:flex; align-items:center; padding-top:80px; padding-bottom:80px;}
+  .hero-grid{display:grid; grid-template-columns:1.25fr 0.85fr; gap:56px; align-items:center; width:100%;}
+  .rec{display:inline-flex; align-items:center; gap:8px; font-family:'Space Grotesk',sans-serif; font-size:12px; letter-spacing:.03em; color:var(--ink-soft); margin-bottom:22px;}
+  .rec .dot{width:8px; height:8px; border-radius:50%; background:var(--accent); animation:pulse 2.4s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:1;} 50%{opacity:.35;}}
+  .hero-name{font-size:clamp(38px,5.2vw,64px); font-weight:700; line-height:1.02; margin:0 0 14px; letter-spacing:-0.01em;}
+  .hero-role{font-size:16px; color:var(--accent); font-weight:500; margin:0 0 22px;}
+  .hero-role span{color:var(--ink-soft); font-weight:400;}
+  .hero-bio{font-size:15px; line-height:1.7; color:var(--ink-soft); max-width:480px; margin:0 0 30px;}
+  .hero-tags{display:flex; flex-wrap:wrap; gap:8px 10px; margin-bottom:34px;}
+  .htag{font-size:11.5px; padding:6px 11px; border:1px solid var(--line-dark); border-radius:20px; color:var(--ink-soft); font-family:'Space Grotesk',sans-serif;}
+  .hero-cta{display:inline-flex; align-items:center; gap:10px; color:var(--ink); text-decoration:none; font-size:13.5px; font-weight:500; border-bottom:1px solid var(--accent); padding-bottom:3px;}
+  .hero-cta:hover{color:var(--accent);}
+
+  .viewfinder{
+    aspect-ratio:4/5; position:relative; border:1px solid var(--line-dark);
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    background:linear-gradient(160deg,#1D2023,#141618);
+  }
+  .viewfinder .vf-mark{position:absolute; width:28px; height:28px; border-color:var(--accent);}
+  .viewfinder .vf-tl{top:14px; left:14px; border-top:1.5px solid var(--accent); border-left:1.5px solid var(--accent);}
+  .viewfinder .vf-tr{top:14px; right:14px; border-top:1.5px solid var(--accent); border-right:1.5px solid var(--accent);}
+  .viewfinder .vf-bl{bottom:14px; left:14px; border-bottom:1.5px solid var(--accent); border-left:1.5px solid var(--accent);}
+  .viewfinder .vf-br{bottom:14px; right:14px; border-bottom:1.5px solid var(--accent); border-right:1.5px solid var(--accent);}
+  .viewfinder .vf-label{font-family:'Space Grotesk',sans-serif; font-size:11.5px; color:var(--ink-soft); font-style:italic;}
+  .viewfinder .vf-code{position:absolute; bottom:34px; left:0; right:0; text-align:center; font-family:'Space Grotesk',sans-serif; font-size:11px; letter-spacing:.06em; color:var(--ink-soft); font-variant-numeric:tabular-nums;}
+
+  /* ---------- Competencias ---------- */
+  .comp-grid{display:grid; grid-template-columns:1fr 1fr; gap:2px; background:var(--line-light); border:1px solid var(--line-light);}
+  .comp-card{background:var(--paper); padding:30px 32px;}
+  .comp-icon{width:30px; height:30px; margin-bottom:16px;}
+  .comp-name{font-size:16px; font-weight:600; margin:0 0 6px;}
+  .comp-flow{font-family:'Space Grotesk',sans-serif; font-size:11.5px; color:var(--ink-dark-soft); margin:0 0 12px; font-style:italic;}
+  .comp-desc{font-size:13.5px; line-height:1.65; color:var(--ink-dark-soft); margin:0;}
+
+  /* ---------- Timeline (experiencia / participacion) ---------- */
+  .tl{position:relative; padding-left:30px; border-left:1px solid var(--line-dark);}
+  .tl-item{position:relative; padding-bottom:38px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-dot{position:absolute; left:-35px; top:3px; width:9px; height:9px; border-radius:50%; background:var(--accent-current,var(--accent)); box-shadow:0 0 0 4px var(--dot-ring, rgba(225,85,44,0.16));}
+  .tl-date{font-family:'Space Grotesk',sans-serif; font-size:12px; color:var(--accent-current,var(--accent)); margin-bottom:4px; font-variant-numeric:tabular-nums;}
+  .tl-title{font-size:17px; font-weight:600; margin:0 0 4px;}
+  .tl-desc{font-size:13.5px; color:var(--ink-soft); margin:0; line-height:1.6;}
+
+  /* ---------- Proyectos ---------- */
+  .proj-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .proj-card{border:1px solid var(--line-light);}
+  .proj-frame{aspect-ratio:4/3; position:relative; background:var(--paper-2); display:flex; align-items:center; justify-content:center;}
+  .proj-frame span{font-size:10.5px; font-style:italic; color:var(--ink-dark-soft); opacity:.75;}
+  .proj-frame .fm-tl, .proj-frame .fm-br{width:14px; height:14px; opacity:.4;}
+  .proj-body{padding:16px 18px 20px;}
+  .proj-name{font-size:14.5px; font-weight:600; margin:0 0 6px;}
+  .proj-tags{font-size:12px; color:var(--ink-dark-soft); line-height:1.55; margin:0;}
+
+  /* ---------- Trayectoria ---------- */
+  .tray-grid{display:grid; grid-template-columns:1fr 1fr; gap:28px 40px;}
+  .tray-group h3{font-size:14px; font-weight:600; margin:0 0 10px; display:flex; align-items:center; gap:9px;}
+  .tray-swatch{width:8px; height:8px; border-radius:2px; background:var(--accent);}
+  .tray-list{font-size:13.5px; line-height:1.9; color:var(--ink-soft); margin:0;}
+
+  /* ---------- Formacion ---------- */
+  .form-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:0; border-top:1px solid var(--line-light);}
+  .form-col{padding:26px 26px 0 0; border-right:1px solid var(--line-light);}
+  .form-col:last-child{border-right:none;}
+  .form-col h3{font-size:12.5px; font-family:'Space Grotesk',sans-serif; letter-spacing:.02em; color:var(--accent); margin:0 0 14px;}
+  .form-col ul{list-style:none; margin:0; padding:0;}
+  .form-col li{font-size:13.5px; line-height:1.5; padding:9px 0; border-bottom:1px solid var(--line-light); color:var(--ink-dark-soft);}
+  .form-col li:last-child{border-bottom:none;}
+
+  /* ---------- Cierre ---------- */
+  #cierre{min-height:92vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;}
+  .stop{display:inline-flex; align-items:center; gap:8px; font-family:'Space Grotesk',sans-serif; font-size:12px; color:var(--ink-soft); margin-bottom:34px;}
+  .stop .sq{width:8px; height:8px; background:var(--ink-soft);}
+  blockquote{font-family:'Space Grotesk',sans-serif; font-size:clamp(20px,3vw,30px); font-weight:500; line-height:1.5; max-width:640px; margin:0 0 44px; font-style:italic;}
+  .contact-title{font-size:11.5px; font-family:'Space Grotesk',sans-serif; letter-spacing:.03em; color:var(--accent); margin-bottom:12px;}
+  footer{padding:26px 64px; font-size:11px; color:var(--ink-soft); text-align:center; border-top:1px solid var(--line-dark);}
+
+  @media (max-width:900px){
+    #nav{display:none;}
+    #mnav{display:flex;}
+    main{margin-left:0; margin-top:46px;}
+    section{padding:64px 24px;}
+    .hero-grid{grid-template-columns:1fr; gap:36px;}
+    .viewfinder{max-width:320px; margin:0 auto;}
+    .comp-grid{grid-template-columns:1fr;}
+    .proj-grid{grid-template-columns:1fr 1fr;}
+    .tray-grid{grid-template-columns:1fr;}
+    .form-grid{grid-template-columns:1fr; border-top:none;}
+    .form-col{border-right:none; border-top:1px solid var(--line-light); padding-top:20px;}
+  }
+  @media (max-width:560px){
+    .proj-grid{grid-template-columns:1fr;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .rec .dot{animation:none;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<nav id="mnav">
+  <a href="#perfil" class="mlink">Perfil</a>
+  <a href="#competencias" class="mlink">Competencias</a>
+  <a href="#experiencia" class="mlink">Experiencia</a>
+  <a href="#proyectos" class="mlink">Proyectos</a>
+  <a href="#trayectoria" class="mlink">Trayectoria</a>
+  <a href="#formacion" class="mlink">Formación</a>
+  <a href="#participacion" class="mlink">Participación</a>
+  <a href="#cierre" class="mlink">Cierre</a>
+</nav>
+
+<nav id="nav">
+  <div class="navtop">
+    <div class="frame-counter">CAP. <b id="framecount">00</b> / 07</div>
+    <ul>
+      <li><a href="#perfil" class="navlink" data-n="00"><span class="n">00</span>Perfil</a></li>
+      <li><a href="#competencias" class="navlink" data-n="01"><span class="n">01</span>Competencias</a></li>
+      <li><a href="#experiencia" class="navlink" data-n="02"><span class="n">02</span>Experiencia</a></li>
+      <li><a href="#proyectos" class="navlink" data-n="03"><span class="n">03</span>Proyectos</a></li>
+      <li><a href="#trayectoria" class="navlink" data-n="04"><span class="n">04</span>Trayectoria</a></li>
+      <li><a href="#formacion" class="navlink" data-n="05"><span class="n">05</span>Formación</a></li>
+      <li><a href="#participacion" class="navlink" data-n="06"><span class="n">06</span>Participación</a></li>
+      <li><a href="#cierre" class="navlink" data-n="07"><span class="n">07</span>Cierre</a></li>
+    </ul>
+  </div>
+  <div class="navbottom">Milton Dávila López<br>Dossier interactivo</div>
+</nav>
+
+<main>
+
+  <!-- 00 PERFIL -->
+  <section id="perfil" class="dark">
+    <div class="frame-mark fm-tl"></div><div class="frame-mark fm-br"></div>
+    <div class="inner hero-grid">
+      <div>
+        <div class="rec"><span class="dot"></span> EN CURSO — TRAYECTORIA ACTIVA</div>
+        <h1 class="hero-name">Milton Dávila<br>López</h1>
+        <p class="hero-role">Productor creativo · Estratega de comunicación <span>· Articulador de proyectos</span></p>
+        <p class="hero-bio">Un profesional multidisciplinario que ha aprendido haciendo: de la técnica eléctrica a la fotografía, y de ahí a la producción y la comunicación estratégica.</p>
+        <p class="placeholder">Espacio para párrafo de perfil personal (3–4 líneas)</p>
+        <div class="hero-tags">
+          <span class="htag">Emprendimientos</span><span class="htag">PYMES</span>
+          <span class="htag">Proyectos sociales</span><span class="htag">Proyectos ambientales</span>
+          <span class="htag">Organizaciones</span><span class="htag">Producciones audiovisuales</span>
+          <span class="htag">Vinculación estratégica</span>
+        </div>
+        <a class="hero-cta" href="#competencias">Ver el dossier completo ↓</a>
+      </div>
+      <div class="viewfinder">
+        <div class="vf-mark vf-tl"></div><div class="vf-mark vf-tr"></div>
+        <div class="vf-mark vf-bl"></div><div class="vf-mark vf-br"></div>
+        <span class="vf-label">retrato ·<br>pendiente</span>
+        <div class="vf-code">MDL · 2016—2026</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 COMPETENCIAS -->
+  <section id="competencias" class="light" style="--accent-current:#E1552C;">
+    <div class="frame-mark fm-tl"></div><div class="frame-mark fm-br"></div>
+    <div class="inner">
+      <div class="chapter-tag">01<span class="dash"></span>Competencias</div>
+      <h2 class="sec-title">Cuatro formas de trabajar</h2>
+      <p class="sec-sub">Comunicación, producción, desarrollo y vinculación: los ejes que atraviesan cada proyecto.</p>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <svg class="comp-icon" viewBox="0 0 24 24" fill="none" stroke="#E1552C" stroke-width="1.4"><rect x="3" y="7" width="14" height="11" rx="1.5"/><path d="M17 10.5l4-2.5v8l-4-2.5"/><circle cx="10" cy="12.5" r="2.6"/></svg>
+          <p class="comp-name">Comunicación</p>
+          <p class="comp-flow">Escuchar → analizar → cuestionar → proponer</p>
+          <p class="comp-desc">Comunicación estratégica, relaciones públicas, entrevistas, guion, representación y documentación.</p>
+        </div>
+        <div class="comp-card">
+          <svg class="comp-icon" viewBox="0 0 24 24" fill="none" stroke="#E1552C" stroke-width="1.4"><rect x="4" y="5" width="16" height="14" rx="1.5"/><path d="M4 9h16M8 5v-1M16 5v-1"/></svg>
+          <p class="comp-name">Producción</p>
+          <p class="comp-flow">Idea → planificación → ejecución → resultado</p>
+          <p class="comp-desc">Fotografía, video, producción audiovisual, eventos, entrevistas, cápsulas, documentales y transmisiones.</p>
+        </div>
+        <div class="comp-card">
+          <svg class="comp-icon" viewBox="0 0 24 24" fill="none" stroke="#E1552C" stroke-width="1.4"><path d="M4 19V9M11 19V5M18 19v-7"/></svg>
+          <p class="comp-name">Desarrollo</p>
+          <p class="comp-flow">Observar → estructurar → planificar → ejecutar</p>
+          <p class="comp-desc">Ideación, evaluación, estructuración y planificación de proyectos.</p>
+        </div>
+        <div class="comp-card">
+          <svg class="comp-icon" viewBox="0 0 24 24" fill="none" stroke="#E1552C" stroke-width="1.4"><circle cx="8" cy="9" r="3"/><circle cx="17" cy="9" r="3"/><path d="M3 20c0-3 2.5-5 5-5s5 2 5 5M12 20c0-2.5 2-4.3 5-4.3s5 1.8 5 4.3"/></svg>
+          <p class="comp-name">Vinculación</p>
+          <p class="comp-flow">Comprender → relacionar → facilitar → participar → aportar</p>
+          <p class="comp-desc">Relación con emprendedores, instituciones, organizaciones, comunidades y colaboradores.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 EXPERIENCIA -->
+  <section id="experiencia" class="dark2" style="--accent-current:#E1552C; --dot-ring:rgba(225,85,44,0.18);">
+    <div class="frame-mark fm-tl"></div><div class="frame-mark fm-br"></div>
+    <div class="inner">
+      <div class="chapter-tag">02<span class="dash"></span>Experiencia profesional</div>
+      <h2 class="sec-title">De la técnica al oficio creativo</h2>
+      <p class="sec-sub">Tres etapas que muestran una base práctica y técnica que después se volvió comunicación y producción.</p>
+      <div class="tl">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">2019 — presente</div>
+          <p class="tl-title">COMUNiCANDO</p>
+          <p class="tl-desc">Fundador / Productor creativo / Comunicación</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">2017 — 2019</div>
+          <p class="tl-title">EDS Transformadores</p>
+          <p class="tl-desc">Técnico electricista</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">2016 — 2017</div>
+          <p class="tl-title">Grupo Modo TV</p>
+          <p class="tl-desc">Fotógrafo</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 PROYECTOS -->
+  <section id="proyectos" class="light" style="--accent-current:#E1552C;">
+    <div class="frame-mark fm-tl"></div><div class="frame-mark fm-br"></div>
+    <div class="inner">
+      <div class="chapter-tag">03<span class="dash"></span>Proyectos y colaboraciones destacadas</div>
+      <h2 class="sec-title">Trabajo en contexto</h2>
+      <p class="sec-sub">Una toma y dos líneas por proyecto — pensado para hojearse, no para leerse de corrido.</p>
+      <div class="proj-grid">
+        <div class="proj-card">
+          <div class="proj-frame"><div class="frame-mark fm-tl"></div><div class="frame-mark fm-br"></div><span>fotografía<br>pendiente</span></div>
+          <div class="proj-body"><p class="proj-name">In Yaabilmaj</p><p class="proj-tags">Comunicación · Documentación · Producción · Vinculación · Desarrollo</p></div>
+        </div>
+        <div class="proj-card">
+          <div class="proj-frame"><div class="frame-mark fm-tl"></div><div class="frame-mark fm-br"></div><span>fotografía<br>pendiente</span></div>
+          <div class="proj-body"><p class="proj-name">FerRox Evolution</p><p class="proj-tags">Comunicación · Producción · Desarrollo creativo</p></div>
+        </div>
+        <div class="proj-card">
+          <div class="proj-frame"><div class="frame-mark fm-tl"></div><div class="frame-mark fm-br"></div><span>fotografía<br>pendiente</span></div>
+          <div class="proj-body"><p class="proj-name">Executive Team-building</p><p class="proj-tags">Ideación · Presentación · Dirección · Coordinación · Ejecución</p></div>
+        </div>
+        <div class="proj-card">
+          <div class="proj-frame"><div class="frame-mark fm-tl"></div><div class="frame-mark fm-br"></div><span>fotografía<br>pendiente</span></div>
+          <div class="proj-body"><p class="proj-name">Dimaori21</p><p class="proj-tags">Fotografía → Relaciones públicas → Comunicación</p></div>
+        </div>
+        <div class="proj-card">
+          <div class="proj-frame"><div class="frame-mark fm-tl"></div><div class="frame-mark fm-br"></div><span>fotografía<br>pendiente</span></div>
+          <div class="proj-body"><p class="proj-name">COMUNiCANDO</p><p class="proj-tags">Experimentación · Producción · Comunicación · Diseño · Edición · Desarrollo</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 TRAYECTORIA -->
+  <section id="trayectoria" class="dark2" style="--accent-current:#E1552C;">
+    <div class="frame-mark fm-tl"></div><div class="frame-mark fm-br"></div>
+    <div class="inner">
+      <div class="chapter-tag">04<span class="dash"></span>Trayectoria de producción y colaboraciones</div>
+      <h2 class="sec-title">Amplitud de participación</h2>
+      <p class="sec-sub">Colaboraciones agrupadas por tipo de aportación, sustentadas en el CV original.</p>
+      <div class="tray-grid">
+        <div class="tray-group">
+          <h3><span class="tray-swatch"></span>Producción audiovisual</h3>
+          <p class="tray-list">BeatNight · Kornibot · Somos Diferentes A.C. · Ángeles del Corazón</p>
+        </div>
+        <div class="tray-group">
+          <h3><span class="tray-swatch"></span>Diseño y comunicación</h3>
+          <p class="tray-list">Comedor Aldita · Super Comedy Show · Jóvenes Divulgadores</p>
+        </div>
+        <div class="tray-group">
+          <h3><span class="tray-swatch"></span>Medios y participación</h3>
+          <p class="tray-list">Con Más Flow · Base Acústica · Podcast · Alzamos La Voz</p>
+        </div>
+        <div class="tray-group">
+          <h3><span class="tray-swatch"></span>Arte y cultura</h3>
+          <p class="tray-list">Xlapinta · Kukulcán</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 FORMACION -->
+  <section id="formacion" class="light" style="--accent-current:#E1552C;">
+    <div class="frame-mark fm-tl"></div><div class="frame-mark fm-br"></div>
+    <div class="inner">
+      <div class="chapter-tag">05<span class="dash"></span>Formación</div>
+      <h2 class="sec-title">Aprendizaje por capas</h2>
+      <p class="sec-sub">Agrupada por conocimiento adquirido — más de 30 capacitaciones del CV original, sintetizadas aquí.</p>
+      <div class="form-grid">
+        <div class="form-col">
+          <h3>ACADÉMICA</h3>
+          <ul><li>Técnico electricista</li><li>Administración de Recursos Humanos</li></ul>
+        </div>
+        <div class="form-col">
+          <h3>ESPECIALIZADA</h3>
+          <ul>
+            <li>Producción audiovisual</li>
+            <li>Innovación y emprendimiento</li>
+            <li>Diseño, creación e implementación</li>
+            <li>Comunicación / Periodismo</li>
+          </ul>
+        </div>
+        <div class="form-col">
+          <h3>CAPACITACIÓN CONTINUA</h3>
+          <ul>
+            <li>Modelos de negocio · Emprendimiento</li>
+            <li>Gestión de proyectos · Branding</li>
+            <li>Validación de mercado · Producto</li>
+            <li>Finanzas · Comunicación</li>
+            <li>Sustentabilidad · Proyectos sociales</li>
+            <li>Asociaciones civiles</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 PARTICIPACION -->
+  <section id="participacion" class="dark2" style="--accent-current:#6F8F6C; --dot-ring:rgba(111,143,108,0.2);">
+    <div class="frame-mark fm-tl"></div><div class="frame-mark fm-br"></div>
+    <div class="inner">
+      <div class="chapter-tag">06<span class="dash"></span>Participación social y comunitaria</div>
+      <h2 class="sec-title">Compromiso con el entorno</h2>
+      <p class="sec-sub">Voluntariado, liderazgo y medio ambiente, de 2010 a 2022.</p>
+      <div class="tl">
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">2010</div><p class="tl-title">Buen Vecino</p></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">2019</div><p class="tl-title">Limpieza de manglar y playas</p><p class="tl-desc">Expo Hogares Ecológicos</p></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">2020</div><p class="tl-title">Voluntariado y economía solidaria</p><p class="tl-desc">Donaciones · liderazgo juvenil</p></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">2021</div><p class="tl-title">Embajador Juvenil</p><p class="tl-desc">Inspector Ambiental de Tajamar · voluntariado</p></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">2022</div><p class="tl-title">Premio Estatal de la Juventud</p><p class="tl-desc">Participación en el proceso</p></div>
+      </div>
+      <div class="hero-tags" style="margin-top:36px;">
+        <span class="htag">Medio ambiente</span><span class="htag">Juventudes</span>
+        <span class="htag">Comunidad</span><span class="htag">Voluntariado</span>
+        <span class="htag">Participación ciudadana</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 CIERRE -->
+  <section id="cierre" class="darkest">
+    <div class="frame-mark fm-tl"></div><div class="frame-mark fm-br"></div>
+    <div class="stop"><span class="sq"></span> FIN DE GRABACIÓN</div>
+    <blockquote>“Vivimos para observar.<br>Aprendemos para comprender.<br>Comunicamos para trascender.”</blockquote>
+    <div class="contact-title">Contacto</div>
+    <p class="placeholder">Teléfono · correo electrónico · redes / portafolio</p>
+  </section>
+
+  <footer>Milton Dávila López — Dossier interactivo · perfil profesional</footer>
+</main>
+
+<script>
+  const sections = document.querySelectorAll('main section[id]');
+  const navlinks = document.querySelectorAll('.navlink');
+  const mlinks = document.querySelectorAll('.mlink');
+  const framecount = document.getElementById('framecount');
+  const nav = document.getElementById('nav');
+
+  const accentFor = { perfil:'#E1552C', competencias:'#E1552C', experiencia:'#E1552C',
+    proyectos:'#E1552C', trayectoria:'#E1552C', formacion:'#E1552C',
+    participacion:'#6F8F6C', cierre:'#E1552C' };
+
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const id = e.target.id;
+        navlinks.forEach(a=>a.classList.toggle('active', a.getAttribute('href')==='#'+id));
+        mlinks.forEach(a=>a.classList.toggle('active', a.getAttribute('href')==='#'+id));
+        const active = document.querySelector('.navlink.active');
+        if(active){ framecount.textContent = active.dataset.n; }
+        nav.style.setProperty('--accent-current', accentFor[id] || '#E1552C');
+      }
+    });
+  }, {threshold:0.5});
+  sections.forEach(s=>io.observe(s));
+</script>
+
+</body>
+</html>
